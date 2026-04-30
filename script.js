@@ -5,6 +5,31 @@ const btn = document.getElementById('generate-btn');
 
 let currentData = []; 
 
+// 获取主题按钮元素
+const themeToggle = document.getElementById('theme-toggle');
+
+// 1. 初始化主题：检查本地存储或系统偏好
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.innerText = '☀️'; // 深色模式显示太阳
+}
+
+// 2. 主题切换逻辑
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    // 检查当前状态并保存
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerText = '☀️';
+    } else {
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerText = '🌙';
+    }
+});
+
+
 // 页面启动时的初始化流程
 async function initApp() {
     try {
