@@ -5,31 +5,6 @@ const btn = document.getElementById('generate-btn');
 
 let currentData = []; 
 
-// 获取主题按钮元素
-const themeToggle = document.getElementById('theme-toggle');
-
-// 1. 初始化主题：检查本地存储或系统偏好
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    themeToggle.innerText = '☀️'; // 深色模式显示太阳
-}
-
-// 2. 主题切换逻辑
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    // 检查当前状态并保存
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        themeToggle.innerText = '☀️';
-    } else {
-        localStorage.setItem('theme', 'light');
-        themeToggle.innerText = '🌙';
-    }
-});
-
-
 // 页面启动时的初始化流程
 async function initApp() {
     try {
@@ -87,6 +62,58 @@ btn.addEventListener('click', () => {
 configSelect.addEventListener('change', (e) => {
     loadConfig(e.target.value);
 });
+
+// 确保 DOM 加载完成后再执行
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // 主题初始化
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeToggle.innerText = '☀️';
+    }
+
+    // 主题切换
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        themeToggle.innerText = isDark ? '☀️' : '🌙';
+    });
+
+    initApp(); // 启动数据加载
+});
+
+async function initApp() {
+    try {
+        // 尝试获取清单
+        const manifestRes = await fetch('./configs/manifest.json');
+        if (!manifestRes.ok) throw new Error('无法找到 manifest.json');
+        
+        const fileNames = await manifestRes.json();
+        const configSelect = document.getElementById('config-select');
+        configSelect.innerHTML = '';
+
+        for (const file of fileNames) {
+            const res = await fetch(`./configs/${file}`);
+            if (!res.ok) continue; // 跳过损坏的单个配置
+            const config = await res.json();
+
+            const option = document.createElement('option');
+            option.value = file;
+            option.textContent = config.title; 
+            configSelect.appendChild(option);
+        }
+
+        if (fileNames.length > 0) {
+            loadConfig(fileNames[0]);
+        }
+    } catch (error) {
+        console.error('初始化失败:', error);
+        document.getElementById('category-title').innerText = "配置加载失败: " + error.message;
+    }
+}
 
 // 启动程序
 initApp();
