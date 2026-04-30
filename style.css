@@ -1,82 +1,64 @@
+/* 1. 定义颜色变量 */
 :root {
-    --primary-color: #6366f1;
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-sub: #64748b;
+    --primary-color: #6366f1;
+    --border-color: #e2e8f0;
 }
 
+/* 2. 定义深色模式下的变量值 */
+.dark-mode {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f1f5f9;
+    --text-sub: #94a3b8;
+    --primary-color: #818cf8;
+    --border-color: #334155;
+}
+
+/* 3. 应用变量到现有样式 */
 body {
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background-color: var(--bg-color);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s; /* 让切换变平滑 */
 }
 
 .container {
     background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    width: 320px;
-}
-
-.selector-section {
-    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
 }
 
 select {
-    width: 100%;
-    padding: 8px 12px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    outline: none;
-    cursor: pointer;
-    transition: border-color 0.2s;
-}
-
-select:focus {
-    border-color: var(--primary-color);
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 2px solid var(--border-color);
 }
 
 h2 {
-    color: #64748b;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--text-sub);
 }
 
 #display-area {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #1e293b;
-    margin: 1.5rem 0;
-    min-height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
+    color: var(--text-main);
 }
 
-button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    border-radius: 10px;
+/* 右上角切换按钮样式 */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    transition: transform 0.1s, background 0.2s;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s;
 }
 
-button:hover {
-    background-color: #4f46e5;
-}
-
-button:active {
-    transform: scale(0.95);
+.theme-toggle:hover {
+    background: rgba(128, 128, 128, 0.1);
 }
