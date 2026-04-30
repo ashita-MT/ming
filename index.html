@@ -1,12 +1,17 @@
-<div class="container">
-    <div class="selector-section">
-        <!-- 移除固定的 option，现在由脚本生成 -->
-        <select id="config-select">
-            <option value="">正在加载分类...</option>
-        </select>
-    </div>
+<body>
+    <!-- 主题切换按钮 -->
+    <button id="theme-toggle" class="theme-toggle" title="切换深色/浅色模式">🌙</button>
 
-    <h2 id="category-title">请选择一个分类</h2>
-    <div id="display-area">✨</div>
-    <button id="generate-btn">开始抽取</button>
-</div>
+    <div class="container">
+        <!-- ... 原有的内容保持不变 ... -->
+        <div class="selector-section">
+            <select id="config-select">
+                <option value="">加载中...</option>
+            </select>
+        </div>
+        <h2 id="category-title">请选择分类</h2>
+        <div id="display-area">✨</div>
+        <button id="generate-btn">开始抽取</button>
+    </div>
+    <script src="script.js"></script>
+</body>
