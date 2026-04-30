@@ -1,64 +1,39 @@
-/* 1. 定义颜色变量 */
+/* 1. 默认状态（浅色/白天模式） */
 :root {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
+    --bg-color: #ffffff;       /* 背景变为纯白 */
+    --card-bg: #f8fafc;       /* 容器卡片稍微带一点灰，增加层级感 */
     --text-main: #1e293b;
     --text-sub: #64748b;
     --primary-color: #6366f1;
     --border-color: #e2e8f0;
 }
 
-/* 2. 定义深色模式下的变量值 */
+/* 2. 深色模式状态（夜间模式） */
 .dark-mode {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-main: #f1f5f9;
+    --bg-color: #121212;       /* 背景变为深灰/接近黑色 */
+    --card-bg: #1e293b;       /* 容器卡片颜色 */
+    --text-main: #f1f5f9;      /* 文字变为浅色 */
     --text-sub: #94a3b8;
     --primary-color: #818cf8;
     --border-color: #334155;
 }
 
-/* 3. 应用变量到现有样式 */
+/* 3. 应用到元素 */
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color); /* 确保这里引用了变量[cite: 3] */
     color: var(--text-main);
-    transition: background-color 0.3s, color 0.3s; /* 让切换变平滑 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 平滑过渡[cite: 3] */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    background: var(--card-bg);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-}
-
-select {
-    background-color: var(--card-bg);
-    color: var(--text-main);
-    border: 2px solid var(--border-color);
-}
-
-h2 {
-    color: var(--text-sub);
-}
-
-#display-area {
-    color: var(--text-main);
-}
-
-/* 右上角切换按钮样式 */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    transition: background 0.3s;
-}
-
-.theme-toggle:hover {
-    background: rgba(128, 128, 128, 0.1);
+    background-color: var(--card-bg); /* 卡片背景也随之切换[cite: 3] */
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
 }
