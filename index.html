@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机元素抽取器</title>
+    <title>随机元素抽取器 Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>✨ 随机灵感抽取</h1>
-        <div id="display-area">点击按钮获取随机元素</div>
-        <button id="generate-btn">立即抽取</button>
+        <div class="selector-section">
+            <select id="config-select">
+                <option value="art.json">艺术主题</option>
+                <option value="pokemon.json">宝可梦</option>
+            </select>
+        </div>
+
+        <h2 id="category-title">正在加载...</h2>
+
+        <div id="display-area">等待抽取</div>
+
+        <button id="generate-btn">随机抽取</button>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
