@@ -1,28 +1,7 @@
-/* 1. 默认状态（浅色/白天模式） */
-:root {
-    --bg-color: #ffffff;       /* 背景变为纯白 */
-    --card-bg: #f8fafc;       /* 容器卡片稍微带一点灰，增加层级感 */
-    --text-main: #1e293b;
-    --text-sub: #64748b;
-    --primary-color: #6366f1;
-    --border-color: #e2e8f0;
-}
-
-/* 2. 深色模式状态（夜间模式） */
-.dark-mode {
-    --bg-color: #121212;       /* 背景变为深灰/接近黑色 */
-    --card-bg: #1e293b;       /* 容器卡片颜色 */
-    --text-main: #f1f5f9;      /* 文字变为浅色 */
-    --text-sub: #94a3b8;
-    --primary-color: #818cf8;
-    --border-color: #334155;
-}
-
-/* 3. 应用到元素 */
 body {
-    background-color: var(--bg-color); /* 确保这里引用了变量[cite: 3] */
-    color: var(--text-main);
-    transition: background-color 0.3s ease, color 0.3s ease; /* 平滑过渡[cite: 3] */
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background-color: #1a1a1a; /* 统一深灰色背景 */
+    color: #e0e0e0;           /* 浅灰色文字 */
     margin: 0;
     display: flex;
     justify-content: center;
@@ -31,9 +10,60 @@ body {
 }
 
 .container {
-    background-color: var(--card-bg); /* 卡片背景也随之切换[cite: 3] */
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: background-color 0.3s ease;
+    background-color: #2d2d2d; /* 卡片背景稍浅 */
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 350px;
+}
+
+.selector-section {
+    margin-bottom: 20px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    background-color: #3d3d3d;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+    outline: none;
+}
+
+h2 {
+    color: #bbb;
+    font-size: 1rem;
+    margin: 20px 0 10px;
+}
+
+#display-area {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 30px 0;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #4f46e5;
+}
+
+button:active {
+    transform: scale(0.95);
 }
